@@ -14,19 +14,17 @@ configs.setup({
 		enable = true,
 	},
 	indent = { enable = true, disable = { "python" } },
-	rainbow = {
-		enable = true,
-	  extended_mode = true,
-  	max_file_lines = nil,
-  	colors = {
+  rainbow = {
+	extended_mode = true,
+	max_file_lines = nil,
+	colors = {
+              "#bd93f9",
               "#ffb86c",
-              "#14ffa9",
-              "#bc95ff",
-              "#ff8d01",
-              "#cc00ff",
-              "#41c09d"
+              "#ff79c6",
+              "#50fa7b",
+              "#f1fa8c",
+              "#8be9fd"
     }
-
-	  },
-})
+}
+	})
 

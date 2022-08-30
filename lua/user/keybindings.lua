@@ -7,10 +7,7 @@
 
 
 local opts = { noremap = true, silent = true }
-
 local opts2 = { noremap = true, silent = false }
-
-local term_opts = { silent = true }
 
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
@@ -24,7 +21,7 @@ vim.g.maplocalleader = " "
 --   normal_mode = "n",
 --   insert_mode = "i",
 --   visual_mode = "v",
---   visual_block_mode = "x"
+-- visual_block_mode = "x"
 --   term_mode = "t",
 --   command_mode = "c",
 
@@ -106,8 +103,8 @@ keymap("i", ">C-H>", "<ESC>H", opts)
 ----------------------------------------------------------------
 
 -- Better indenting
-  keymap("v", "<", "<gv", opts)
-  keymap("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
 
 -- Map J/K to jump between paragraphs
 keymap("v", "J", "}", opts)
@@ -160,14 +157,13 @@ keymap("v", "jj", "<ESC>", opts)
 -- Map leader q to quit without saving
 keymap("n", "<leader>q", ":qall!<CR>", opts)
 
--- Close buffer
-keymap("n", "<leader>cb", ":bd<CR>", opts)
+--Buffers
 
--- Open new empty buffer
-keymap("n", "<leader>cc", ":enew<CR>", opts)
+keymap("n", "<leader>cb", ":bd<CR>", opts) -- Close buffer
+keymap("n", "<leader>cc", ":enew<CR>", opts) -- Open new empty buffer
+keymap("n", "<leader>s", ":luafile %<CR>", opts) -- Source current buffer
+keymap("n", "<leader>bf", "<cmd>vim.lsp.buf.formatting<CR>", opts) --format buffer
 
--- Source current buffer
-keymap("n", "<leader>s", ":luafile %<CR>", opts)
 
 -- open v split
 keymap("n", "<leader>v", ":vs<CR>", opts)
@@ -186,30 +182,23 @@ keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>pp", ":PackerSync<CR>", opts)
 
 -- Telescope
--- open recent Files
-keymap("n", "<leader>m",  ":Telescope oldfiles<CR>", opts)
+keymap("n", "<leader>m", ":Telescope oldfiles<CR>", opts) -- open recent Files
 -- TODO: change telescope find files starting dir
--- search help pages
-keymap("n", "<leader>h",  ":Telescope help_tags<CR>", opts)
--- search all files
-keymap("n", "<leader>f",  ":Telescope find_files<CR>", opts)
--- find words in files
-keymap("n", "<leader>F", ":Telescope live_grep<CR>", opts)
--- open .config folder in file browser
-keymap("n", "<leader>nc", "[[:lua require'user.telescope'.dot_config()<CR>]]", opts)
--- open nvim plugin folder
-keymap("n", "<leader>nn", "[[:lua require'user.telescope'.nvim_plugconfig()<CR>]]", opts)
--- show nvim config files
-keymap("n", "<leader>n", "[[:lua require'user.telescope'.find_configs()<CR>]]", opts)
--- show git commits
-keymap("n", "<leader>ng", "[[:lua require'telescope.builtin'.git_commits()<CR>]]", opts)
+keymap("n", "<leader>h", ":Telescope help_tags<CR>", opts) -- show help pages
+keymap("n", "<leader>f", ":Telescope find_files<CR>", opts) -- search all files
+keymap("n", "<leader>F", ":Telescope live_grep<CR>", opts) --search for text
+keymap("n", "<leader>nd", "[[:lua require'user.telescope'.dot_config()<CR>]]", opts) -- .config folder
+keymap("n", "<leader>nc", "[[:lua require'user.telescope'.catppuccin()<CR>]]", opts) -- .config folder
+keymap("n", "<leader>nn", "[[:lua require'user.telescope'.nvim_plugconfig()<CR>]]", opts) -- nvim plugin config files
+keymap("n", "<leader>n", "[[:lua require'user.telescope'.find_configs()<CR>]]", opts) -- nvim config files
+keymap("n", "<leader>ng", "[[:lua require'telescope.builtin'.git_commits()<CR>]]", opts) -- show git commits
 
 -- Treesitter Playground
-keymap("n", "<leader>t",  ":TSPlaygroundToggle<CR>", opts2)
-keymap("n", "<leader>T",  ":TSHighlightCapturesUnderCursor<CR>", opts2)
+keymap("n", "<leader>t", ":TSPlaygroundToggle<CR>", opts2)
+keymap("n", "<leader>T", ":TSHighlightCapturesUnderCursor<CR>", opts2)
 
 -- restore the session for the current directory
-keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], opts)
+keymap("n", "<leader>ss", [[<cmd>lua require("persistence").load()<cr>]], opts)
 
 -- restore the last session
 keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], opts)
@@ -231,8 +220,30 @@ keymap("v", "cc", ":TComment<CR>", opts)
 -- Map cy to copy, comment out and paste the current line
 keymap("n", "cy", "yy:TComment<CR>p", opts)
 
+-- LSP
+keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+keymap("n", "gR", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
+keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
+keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts) --again in LSP/handlers
+keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts) --again in LSP/handlers
+-- keymap("n", "<leader>bf", "<cmd>vim.lsp.buf.formatting<CR>", opts)
+
+-----------------------------------------------------------------
+-- Mouse mappings
+-----------------------------------------------------------------
+keymap("n", "<RightMouse>", "cc", opts)
+keymap("n", "<2-RightMouse>", "yyccp", opts)
+
 
 vim.cmd([[
 " Stop showing Search highlights
 nmap <silent><leader>z :let @/=""<CR>
 ]])
+
+-- keymap("n", "", "", opts)

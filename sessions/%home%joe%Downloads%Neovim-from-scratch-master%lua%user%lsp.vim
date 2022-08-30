@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~
+cd ~/Downloads/Neovim-from-scratch-master/lua/user/lsp
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,24 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 .config/nvim/lua/user/plugins.lua
-badd +32 .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/groups/editor.lua
-badd +17 .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/palettes/frappe.lua
-badd +20 .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/groups/integrations/nvimtree.lua
-badd +5 .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/groups/integrations/which_key.lua
+badd +12 handlers.lua
 argglobal
 %argdel
-$argadd .config/nvim/lua/user/plugins.lua
-edit .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/palettes/frappe.lua
+$argadd handlers.lua
+edit handlers.lua
 argglobal
-balt .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/groups/integrations/nvimtree.lua
-let s:l = 15 - ((14 * winheight(0) + 19) / 39)
+let s:l = 78 - ((8 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 15
-normal! 020|
-lcd ~
+keepjumps 78
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

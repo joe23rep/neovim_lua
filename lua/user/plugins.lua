@@ -29,6 +29,7 @@ if not status_ok then
 	return
 end
 
+
 -- Have packer use a popup window
 packer.init({
 	display = {
@@ -40,21 +41,16 @@ packer.init({
 
 -- Install your plugins here
 return packer.startup(function(use)
-	-- My plugins here
+-- My plugins here
 
-    use("wbthomason/packer.nvim")
+  use("wbthomason/packer.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("akinsho/bufferline.nvim")
   use("kyazdani42/nvim-tree.lua")
   use("windwp/nvim-autopairs")
   use("lukas-reineke/indent-blankline.nvim")
 	use("nvim-lualine/lualine.nvim")
-	use("NvChad/nvim-colorizer.lua")
-	use({ "catppuccin/nvim", as = "catppuccin"})
-	use("nvim-treesitter/nvim-treesitter")
-	use("nvim-treesitter/playground")
-	use("tomtom/tcomment_vim")
-	use("p00f/nvim-ts-rainbow")
+  use("tomtom/tcomment_vim")
 	use("lewis6991/impatient.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use("mvllow/modes.nvim")
@@ -63,7 +59,6 @@ return packer.startup(function(use)
 	use("goolord/alpha-nvim")
 
 -- cmp
-
 	use("hrsh7th/nvim-cmp")
 	use("hrsh7th/cmp-buffer")
 	use("hrsh7th/cmp-path")
@@ -74,18 +69,16 @@ return packer.startup(function(use)
 --LSP
   use("neovim/nvim-lspconfig")
   use("williamboman/nvim-lsp-installer")
-  use("jose-elias-alvarez/null-ls.nvim")
+  -- use("jose-elias-alvarez/null-ls.nvim")
 
 -- snippets
 	use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
 
-	-- toggleterm
-	use {"akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
-		require("toggleterm").setup()
-	  end}
+-- toggleterm
+	use("akinsho/toggleterm.nvim")
 
-	-- telescope
+-- telescope
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.0',
 		requires = { {'nvim-lua/plenary.nvim'} }
@@ -102,6 +95,30 @@ return packer.startup(function(use)
     require("persistence").setup()
   end,
   })
+
+-- color stuff like themes or tools regarding colors
+	use("nvim-treesitter/nvim-treesitter")
+	use("nvim-treesitter/playground")
+  use("p00f/nvim-ts-rainbow")
+	use({ "joe23rep/colorscheme", as = "catppuccin"})
+	use("NvChad/nvim-colorizer.lua")
+  use {
+  "max397574/colortils.nvim",
+  cmd = "Colortils",
+  config = function()
+    require("colortils").setup()
+  end,
+  }
+
+-- mind note taking plugin
+use {
+  'phaazon/mind.nvim',
+  branch = 'v2',
+  requires = { 'nvim-lua/plenary.nvim' },
+  configure = function()
+    require'mind'.setup()
+  end
+}
 
 -- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

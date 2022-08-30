@@ -18,7 +18,7 @@ toggleterm.setup({
 	shell = vim.o.shell,
   highlights = {
     FloatBorder = {
-      guifg = "#ff8d01",
+      guifg = "#14ffa9",
       guibg = "#1d263c",
     },
   },

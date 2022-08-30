@@ -85,7 +85,6 @@ local mappings = {
   ["F"] = { ":Telescope live_grep<cr>", "Find Text" },
   ["h"] = { ":Telescope help_tags<cr>", "Help pages" },
   ["m"] = { ":Telescope oldfiles<cr>", "Open recent files" },
-  ["n"] = { ":lua require'user.telescope'.find_configs()<CR>", "Open nvim config" },
   ["q"] = { ":qall!<cr>", "Quit w/o saving" },
   ["s"] = { ":luafile %<cr>", "Source file", silent=false },
   ["S"] = { ":lua.require'persistence'.load({ last = true }]<cr>", "Load last session" },
@@ -155,10 +154,11 @@ local mappings = {
 
   n = {
     name = "Telescope",
-    c = { ":lua require'user.telescope'.dot_config()<CR>", "Open .config folder" },
+    c = { ":lua require'user.telescope'.catppuccin()<CR>", "Open catppuccin folder" },
+    d = { ":lua require'user.telescope'.dot_config()<CR>", "Open .config folder" },
     C = { ":Telescope commands<cr>", "Commands" },
     h = { ":Telescope help_tags<cr>", "Find Help" },
-    -- n = { ":lua require'user.telescope'.nvim_plugconfig()<cr>", "Open nvim plugin folder" },
+    n = { ":lua require'user.telescope'.nvim_plugconfig()<cr>", "Open nvim plugin folder" },
     k = { ":Telescope keymaps<cr>", "Keymaps" },
     r = { ":Telescope registers<cr>", "Registers" },
     s = { ":Telescope colorscheme<cr>", "Colorscheme" },

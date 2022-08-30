@@ -7,12 +7,22 @@ require("bufferline").setup{
             },
             modified_selected = {
                 fg = '#ff8d01',
-                bg = '#101221'
+                bg = '#101221',
             },
             modified_visible = {
-                fg = '#ff8d01' ,
-                bg = '#1d263c'
+                fg = '#ff8d01',
+                bg = '#1d263c',
             },
+            duplicate_visible = {
+                bg = '#1D263C',
+                italic = false,
+
+            },
+           duplicate = {
+                bg = '#1D263C',
+                italic = false,
+            },
+
     },
     options = {
         left_trunc_marker = '',
@@ -39,9 +49,9 @@ require("bufferline").setup{
       }
 }
 vim.cmd([[
-"hl.close_button_selected = 
-"hl.close_button = 
-"hl.modified = 
+"hl.close_button_selected =
+"hl.close_button =
+"hl.modified =
 "autocmd ColorScheme * highlight modified guifg=none  guibg=none
 ]])
 

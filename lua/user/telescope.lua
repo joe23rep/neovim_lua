@@ -138,19 +138,19 @@ local function grep_filtered(opts)
 end
 
 
-function M.find_configs()
-  require("telescope.builtin").find_files {
-    prompt_title = " Nvim Config Find",
-    results_title = "Config Files Results",
-    path_display = { "smart" },
-    search_dirs = {
-      "~/.config/nvim",
-    },
-    -- cwd = "~/.config/nvim/",
-    layout_strategy = "horizontal",
-    layout_config = { preview_width = 0.65, width = 0.75 },
-  }
-end
+-- function M.find_configs()
+--   require("telescope.builtin").find_files {
+--     prompt_title = " Nvim Config Find",
+--     results_title = "Config Files Results",
+--     path_display = { "smart" },
+--     search_dirs = {
+--       "~/.config/nvim",
+--     },
+--     -- cwd = "~/.config/nvim/",
+--     layout_strategy = "horizontal",
+--     layout_config = { preview_width = 0.65, width = 0.75 },
+--   }
+-- end
 
 function M.dot_config()
   require("telescope").extensions.file_browser.file_browser {
@@ -161,6 +161,17 @@ function M.dot_config()
     layout_config = { preview_width = 0.65, width = 0.85 },
   }
 end
+
+function M.catppuccin()
+  require("telescope").extensions.file_browser.file_browser {
+    prompt_title = " Catppuccin",
+    cwd = "/home/joe/.local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/",
+    layout_strategy = "horizontal",
+    sorting_strategy = "ascending",
+    layout_config = { preview_width = 0.65, width = 0.85 },
+  }
+end
+
 
 function M.nvim_plugconfig()
   require("telescope").extensions.file_browser.file_browser {

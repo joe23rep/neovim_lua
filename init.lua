@@ -23,4 +23,3 @@ require "user.modes"
 require "user.beacon"
 require "user.colorscheme"
 require "user.keybindings"
-
