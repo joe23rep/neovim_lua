@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~
+cd ~/.config/pacseek
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,13 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +55 .config/rofi/themes/dmenu.rasi
-badd +34 .config/rofi/themes/applauncher.rasi
-badd +32 .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/palettes/frappe.lua
+badd +11 colors.json
+badd +49 ~/.config/ranger/catppuccin.theme
 argglobal
 %argdel
-$argadd .config/rofi/config.rasi
-edit .config/rofi/themes/dmenu.rasi
+$argadd colors.json
+edit colors.json
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -36,33 +35,32 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 86 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 94 + 95) / 190)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
 argglobal
-balt .local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/palettes/frappe.lua
-let s:l = 55 - ((26 * winheight(0) + 19) / 38)
+let s:l = 2 - ((1 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 55
-normal! 017|
+keepjumps 2
+normal! 014|
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/.config/ranger/catppuccin.theme", ":p")) | buffer ~/.config/ranger/catppuccin.theme | else | edit ~/.config/ranger/catppuccin.theme | endif
+if &buftype ==# 'terminal'
+  silent file ~/.config/ranger/catppuccin.theme
+endif
+balt ~/.config/ranger/catppuccin.theme
+let s:l = 36 - ((35 * winheight(0) + 22) / 44)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 36
+normal! 02|
 lcd ~
 wincmd w
-argglobal
-if bufexists(fnamemodify("~/.config/rofi/themes/applauncher.rasi", ":p")) | buffer ~/.config/rofi/themes/applauncher.rasi | else | edit ~/.config/rofi/themes/applauncher.rasi | endif
-if &buftype ==# 'terminal'
-  silent file ~/.config/rofi/themes/applauncher.rasi
-endif
-balt ~/.local/share/nvim/site/pack/packer/start/catppuccin/lua/catppuccin/palettes/frappe.lua
-let s:l = 30 - ((29 * winheight(0) + 19) / 38)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 30
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 86 + 86) / 173)
-exe 'vert 2resize ' . ((&columns * 86 + 86) / 173)
+exe 'vert 1resize ' . ((&columns * 94 + 95) / 190)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

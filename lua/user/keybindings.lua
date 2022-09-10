@@ -25,7 +25,9 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Normal --
+-----------------------------------------------------------------
+-- Normal Mode
+-----------------------------------------------------------------
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -162,8 +164,7 @@ keymap("n", "<leader>q", ":qall!<CR>", opts)
 keymap("n", "<leader>cb", ":bd<CR>", opts) -- Close buffer
 keymap("n", "<leader>cc", ":enew<CR>", opts) -- Open new empty buffer
 keymap("n", "<leader>s", ":luafile %<CR>", opts) -- Source current buffer
-keymap("n", "<leader>bf", "<cmd>vim.lsp.buf.formatting<CR>", opts) --format buffer
-
+keymap('n', '<leader>cv', '<cmd>vnew<cr>', opts) -- open new buffer in v split
 
 -- open v split
 keymap("n", "<leader>v", ":vs<CR>", opts)
@@ -174,9 +175,6 @@ keymap("n", "<leader>se", ":SudoEdit<CR>", opts2)
 
 -- Replace word under cursor
 keymap("n", "<leader>r", ":%s/<C-r><C-w>//g<Left><Left>", opts2)
-
--- toggle nvim tree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Plug install shortcut
 keymap("n", "<leader>pp", ":PackerSync<CR>", opts)
@@ -203,6 +201,19 @@ keymap("n", "<leader>ss", [[<cmd>lua require("persistence").load()<cr>]], opts)
 -- restore the last session
 keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], opts)
 
+-- Vimwiki
+keymap("n", "<leader>ww", ":VimwikiIndex<cr>", opts)
+keymap("n", "<leader>wd", "<Plug>VimwikiDeleteFile", opts)
+keymap("n", "<leader>wr", "<Plug>VimwikiRenameFile", opts)
+keymap("n", "<leader>wt", "<Plug>VimwikiTabIndex", opts)
+keymap("n", "<leader>ws", "<Plug>VimwikiUISelect", opts)
+
+-- Colorizer
+keymap("n", "<leader>C", ":ColorizerToggle", opts)
+
+-- Rnvimr
+keymap("n", "<leader>e", ":RnvimrToggle<CR>", opts)
+
 -----------------------------------------------------------------
 -- Plugin mappings
 -----------------------------------------------------------------
@@ -212,13 +223,8 @@ keymap("n", "<C-t>", ":ToggleTerm<CR>", opts)
 keymap("i", "<C-t>", ":ToggleTerm<CR>", opts)
 keymap("n", "<C-l>", ":lua _LAZYGIT_TOGGLE()<CR>", opts)
 
--- TComment
--- Map cc to comment out current line
-keymap("n", "cc", ":TComment<CR>", opts)
-keymap("v", "cc", ":TComment<CR>", opts)
-
--- Map cy to copy, comment out and paste the current line
-keymap("n", "cy", "yy:TComment<CR>p", opts)
+-- Comment
+keymap("n", "cy", "yy<Plug>(comment_toggle_linewise)<cr>p", opts)
 
 -- LSP
 keymap("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -232,7 +238,10 @@ keymap("n", "ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 keymap("n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts) --again in LSP/handlers
 keymap("n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts) --again in LSP/handlers
--- keymap("n", "<leader>bf", "<cmd>vim.lsp.buf.formatting<CR>", opts)
+
+-- Toggle
+keymap("n", "+", ":call Toggle()<CR>", opts)
+keymap("v", "+", ":call Toggle()<CR>", opts)
 
 -----------------------------------------------------------------
 -- Mouse mappings

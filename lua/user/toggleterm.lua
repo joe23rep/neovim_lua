@@ -16,13 +16,13 @@ toggleterm.setup({
 	direction = "float",
 	close_on_exit = true,
 	shell = vim.o.shell,
-  highlights = {
+   highlights = {
     FloatBorder = {
-      guifg = "#14ffa9",
-      guibg = "#1d263c",
-    },
-  },
-	float_opts = {
+      guifg = "#ff8d01",
+      guibg = "#101221",
+     },
+   },
+   float_opts = {
 		border = "curved",
 		winblend = 0,
 		highlights = {
@@ -49,28 +49,4 @@ local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
 function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
-end
-
-local node = Terminal:new({ cmd = "node", hidden = true })
-
-function _NODE_TOGGLE()
-	node:toggle()
-end
-
-local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
-
-function _NCDU_TOGGLE()
-	ncdu:toggle()
-end
-
-local htop = Terminal:new({ cmd = "htop", hidden = true })
-
-function _HTOP_TOGGLE()
-	htop:toggle()
-end
-
-local python = Terminal:new({ cmd = "python", hidden = true })
-
-function _PYTHON_TOGGLE()
-	python:toggle()
 end

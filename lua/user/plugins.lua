@@ -50,13 +50,16 @@ return packer.startup(function(use)
   use("windwp/nvim-autopairs")
   use("lukas-reineke/indent-blankline.nvim")
 	use("nvim-lualine/lualine.nvim")
-  use("tomtom/tcomment_vim")
+  -- use("tomtom/tcomment_vim")
 	use("lewis6991/impatient.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use("mvllow/modes.nvim")
 	use("rainbowhxch/beacon.nvim")
 	use("folke/which-key.nvim")
 	use("goolord/alpha-nvim")
+	use("vimwiki/vimwiki")
+	use("kevinhwang91/rnvimr")
+  use("numToStr/Comment.nvim")
 
 -- cmp
 	use("hrsh7th/nvim-cmp")
@@ -78,11 +81,20 @@ return packer.startup(function(use)
 -- toggleterm
 	use("akinsho/toggleterm.nvim")
 
+-- mind
+  use {
+  'phaazon/mind.nvim',
+  branch = 'v2',
+  requires = { 'nvim-lua/plenary.nvim' },
+  configure = function()
+   require'mind'.setup()
+  end
+  }
 -- telescope
 	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.0',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	  }
+	'nvim-telescope/telescope.nvim', tag = '0.1.0',
+	requires = { {'nvim-lua/plenary.nvim'} }
+	}
 	use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 	use("nvim-telescope/telescope-file-browser.nvim")
 
@@ -106,19 +118,8 @@ return packer.startup(function(use)
   "max397574/colortils.nvim",
   cmd = "Colortils",
   config = function()
-    require("colortils").setup()
   end,
   }
-
--- mind note taking plugin
-use {
-  'phaazon/mind.nvim',
-  branch = 'v2',
-  requires = { 'nvim-lua/plenary.nvim' },
-  configure = function()
-    require'mind'.setup()
-  end
-}
 
 -- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

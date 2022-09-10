@@ -91,7 +91,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
               symlink_open = "",
             },
             git = {
-              unstaged = "",
+              unstaged = "",
               staged = "✓",
               unmerged = "",
               renamed = "➜",

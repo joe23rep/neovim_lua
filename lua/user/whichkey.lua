@@ -36,7 +36,7 @@ local setup = {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "", -- symbol used between a key and it's label
-    group = "+", -- symbol prepended to a group
+    group = "", -- symbol prepended to a group
   },
   popup_mappings = {
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -50,10 +50,10 @@ local setup = {
     winblend = 1,
   },
   layout = {
-    height = { min = 2, max = 25 }, -- min and max height of the columns
-    width = { min = 11, max = 50 }, -- min and max width of the columns
-    spacing = 8, -- spacing between columns
-    align = "center", -- align columns left, center or right
+    height = { min = 4, max = 22 }, -- min and max height of the columns
+    width = { min = 4, max = 29 }, -- min and max width of the columns
+    spacing = 2, -- spacing between columns
+    align = "right", -- align columns left, center or right
   },
   ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
@@ -80,7 +80,9 @@ local opts = {
 
 local mappings = {
   ["a"] = { ":Alpha<cr>", "Alpha" },
-  ["e"] = { ":NvimTreeToggle<cr>", "Explorer" },
+  ["e"] = { ":RnvimrToggle<CR>", "Explorer" },
+  ["C"] = { ":ColorizerToggle<cr>", "Toggle Colorizer" },
+  ["E"] = { ":SudoWrite<CR>","Edit as root", silent=false },
   ["f"] = { ":Telescope find_files<cr>", "Find files" },
   ["F"] = { ":Telescope live_grep<cr>", "Find Text" },
   ["h"] = { ":Telescope help_tags<cr>", "Help pages" },
@@ -92,7 +94,6 @@ local mappings = {
   ["T"] = { ":TSHighlightCapturesUnderCursor<cr>", "Colorgroup u/ cursor", silent=false },
   ["r"] = { ":%s/<C-r><C-w>//g<Left><Left>", "Replace word u/ cursor", silent=false },
   ["v"] = { ":vs<CR>","Open v split" },
-  ["w"] = { ":SudoWrite<CR>","Edit as root", silent=false },
   ["z"] = { ":let @/=\"\"<CR>","Remove highlights"},
 
   p = {
@@ -110,15 +111,10 @@ local mappings = {
       b = { ":bd<cr>", "Close buffer" },
       n = { ":BufferLineCycleNext<cr>", "Move to next buffer" },
       p = { ":BufferLineCyclePrev<cr>", "Move to previous buffer" },
+      v = { ":vnew<cr>", "Open new buffer in V-Split" },
   },
 
-  --q = {
-  --   name = "Sessions",
-  --   s = { "[[<cmd>lua require("persistence").load()<cr>]]", "load session for this file" },
-  --   l = { "[[<cmd>lua require("persistence").load({ last = true })<cr>]]", "load last session" },
- --},
-
-  g = {
+   g = {
     name = "Git",
     b = { ":Telescope git_branches<cr>", "Checkout branch" },
     c = { ":Telescope git_commit<cr>", "Checkout commits" },
@@ -163,7 +159,14 @@ local mappings = {
     r = { ":Telescope registers<cr>", "Registers" },
     s = { ":Telescope colorscheme<cr>", "Colorscheme" },
   },
-
+ w = {
+    name = "Vimwiki",
+    w = { ":VimwikiIndex<cr>", "Open index File" },
+    t = { "<Plug>VimwikiTabIndex", "Open index file in a new tab" },
+    s = { "<Plug>VimwikiUISelect", "Select and open wiki index file" },
+    d = { "<Plug>VimwikiDeleteFile", "Delete wiki file you are in" },
+    r = { "<Plug>VimwikiRenameFile", "Rename wiki file you are in" },
+  },
   }
 
 which_key.setup(setup)

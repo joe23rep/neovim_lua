@@ -1,8 +1,6 @@
 -- Telescope 🔭 - setup and customized pickers
 -- require "joel.telescope.mappings"
 local actions = require "telescope.actions"
-local action_state = require "telescope.actions.state"
-local utils = require "telescope.utils"
 
 require("telescope").setup {
   extensions = {

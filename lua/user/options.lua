@@ -46,6 +46,13 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
+-- remove trailing whitespaces
+vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
+  pattern = { '*' },
+  callback = function()
+    vim.api.nvim_command [[%s/\s\+$//e]]
+  end
+})
 
 
 vim.cmd([[
@@ -119,6 +126,8 @@ vim.cmd([[
     autocmd BufWinEnter ?* silent! loadview
   augroup end
 
+  " Enable saving as root
+  command W :execute ':silent w !sudo tee % > /dev/null' | :edit!
 ]])
 
 
