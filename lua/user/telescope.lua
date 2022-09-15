@@ -122,7 +122,17 @@ require("telescope").setup {
 require("telescope").load_extension "file_browser"
 -- https://github.com/nvim-telescope/telescope-fzf-native.nvim#telescope-fzf-nativenvim
 require("telescope").load_extension "fzf"
+-- https://github.com/ghassan0/telescope-glyph.nvim
+require('telescope').load_extension('glyph')
+-- https://github.com/AckslD/nvim-neoclip.lua
+require("telescope").load_extension "neoclip"
 
+-- Neoclip settings
+require('neoclip').setup({
+  default_register = '\"+P',
+  default_register_macros = 'q',
+  enable_macro_history = true,
+ })
 -- my telescopic customizations
 local M = {}
 
@@ -134,21 +144,6 @@ local function grep_filtered(opts)
     search = opts.filter_word or "",
   }
 end
-
-
--- function M.find_configs()
---   require("telescope.builtin").find_files {
---     prompt_title = " Nvim Config Find",
---     results_title = "Config Files Results",
---     path_display = { "smart" },
---     search_dirs = {
---       "~/.config/nvim",
---     },
---     -- cwd = "~/.config/nvim/",
---     layout_strategy = "horizontal",
---     layout_config = { preview_width = 0.65, width = 0.75 },
---   }
--- end
 
 function M.dot_config()
   require("telescope").extensions.file_browser.file_browser {
@@ -209,3 +204,5 @@ function M.find_configs()
 end
 
 return M
+
+

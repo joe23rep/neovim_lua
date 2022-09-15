@@ -159,12 +159,15 @@ keymap("v", "jj", "<ESC>", opts)
 -- Map leader q to quit without saving
 keymap("n", "<leader>q", ":qall!<CR>", opts)
 
---Buffers
+-- save file as
+keymap("n", "<leader>S", ":sav ", opts2)
 
+--Buffers
+keymap("n", "<leader>bc", ":bd<CR>", opts) -- Close buffer
 keymap("n", "<leader>cb", ":bd<CR>", opts) -- Close buffer
-keymap("n", "<leader>cc", ":enew<CR>", opts) -- Open new empty buffer
+keymap("n", "<leader>bn", ":enew<CR>", opts) -- Open new empty buffer
 keymap("n", "<leader>s", ":luafile %<CR>", opts) -- Source current buffer
-keymap('n', '<leader>cv', '<cmd>vnew<cr>', opts) -- open new buffer in v split
+keymap('n', '<leader>bv', '<cmd>vnew<cr>', opts) -- open new buffer in v split
 
 -- open v split
 keymap("n", "<leader>v", ":vs<CR>", opts)
@@ -186,17 +189,16 @@ keymap("n", "<leader>h", ":Telescope help_tags<CR>", opts) -- show help pages
 keymap("n", "<leader>f", ":Telescope find_files<CR>", opts) -- search all files
 keymap("n", "<leader>F", ":Telescope live_grep<CR>", opts) --search for text
 keymap("n", "<leader>nd", "[[:lua require'user.telescope'.dot_config()<CR>]]", opts) -- .config folder
-keymap("n", "<leader>nc", "[[:lua require'user.telescope'.catppuccin()<CR>]]", opts) -- .config folder
+keymap("n", "<leader>nc", "[[:lua require'user.telescope'.catppuccin()<CR>]]", opts) -- .ccatppuccin folder
 keymap("n", "<leader>nn", "[[:lua require'user.telescope'.nvim_plugconfig()<CR>]]", opts) -- nvim plugin config files
 keymap("n", "<leader>n", "[[:lua require'user.telescope'.find_configs()<CR>]]", opts) -- nvim config files
-keymap("n", "<leader>ng", "[[:lua require'telescope.builtin'.git_commits()<CR>]]", opts) -- show git commits
+keymap("n", "<leader>ng", ":Telescope Glyph<CR>", opts) -- show font glyphs
+keymap("n", "<leader>C", ":Cheatsheet<CR>", opts) -- show cheatcheet
+keymap("n", "<leader>p", ":Telescope neoclip<CR>", opts) -- show cheatcheet
 
 -- Treesitter Playground
 keymap("n", "<leader>t", ":TSPlaygroundToggle<CR>", opts2)
 keymap("n", "<leader>T", ":TSHighlightCapturesUnderCursor<CR>", opts2)
-
--- restore the session for the current directory
-keymap("n", "<leader>ss", [[<cmd>lua require("persistence").load()<cr>]], opts)
 
 -- restore the last session
 keymap("n", "<leader>ql", [[<cmd>lua require("persistence").load({ last = true })<cr>]], opts)
@@ -209,10 +211,13 @@ keymap("n", "<leader>wt", "<Plug>VimwikiTabIndex", opts)
 keymap("n", "<leader>ws", "<Plug>VimwikiUISelect", opts)
 
 -- Colorizer
-keymap("n", "<leader>C", ":ColorizerToggle", opts)
+keymap("n", "<leader>c", ":ColorizerToggle", opts)
 
 -- Rnvimr
 keymap("n", "<leader>e", ":RnvimrToggle<CR>", opts)
+
+-- CCC
+keymap("n", "<leader>cc", ":CccPick<CR>", opts2)
 
 -----------------------------------------------------------------
 -- Plugin mappings

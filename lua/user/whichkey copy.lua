@@ -46,13 +46,13 @@ window = {
   border = "rounded", -- none, single, double, shadow
   position = "bottom", -- bottom, top
   margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-  padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
+  padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
   winblend = 1,
 },
 layout = {
-  height = { min = 1, max = 50 }, -- min and max height of the columns
-  width = { min = 1, max = 50 }, -- min and max width of the columns
-  spacing = 10, -- spacing between columns
+  height = { min = 4, max = 22 }, -- min and max height of the columns
+  width = { min = 4, max = 40 }, -- min and max width of the columns
+  spacing = 2, -- spacing between columns
   align = "left", -- align columns left, center or right
 },
 ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
@@ -88,17 +88,16 @@ local mappings = {
   ["F"] = { ":Telescope live_grep<cr>", "Find Text" },
   ["h"] = { ":Telescope help_tags<cr>", "Help pages" },
   ["m"] = { ":Telescope oldfiles<cr>", "Open recent files" },
-  ["p"] = { ":Telescope neoclip<cr>", "Recent yanked files" },
   ["q"] = { ":qall!<cr>", "Quit w/o saving" },
   ["s"] = { ":luafile %<cr>", "Source file", silent=false },
   ["S"] = { ":sav ", "Save file as", silent=false },
   ["t"] = { ":TSPlaygroundToggle<cr>", "TS Playground" },
-  ["T"] = { ":TSHighlightCapturesUnderCursor<cr>", "HLgroup u/ cursor", silent=false },
-  ["r"] = { ":%s/<C-r><C-w>//g<Left><Left>", "Replace u/ cursor", silent=false },
+  ["T"] = { ":TSHighlightCapturesUnderCursor<cr>", "Colorgroup u/ cursor", silent=false },
+  ["r"] = { ":%s/<C-r><C-w>//g<Left><Left>", "Replace word u/ cursor", silent=false },
   ["v"] = { ":vs<CR>","Open v split" },
   ["z"] = { ":let @/=\"\"<CR>","Remove highlights"},
 
-   P = {
+  p = {
     name = "Packer",
     c = { ":PackerCompile<cr>", "Compile" },
     i = { ":PackerInstall<cr>", "Install" },
@@ -163,32 +162,13 @@ local mappings = {
     s = { ":Telescope colorscheme<cr>", "Colorscheme" },
   },
 
-  V = {
+  w = {
     name = "Vimwiki",
     w = { ":VimwikiIndex<cr>", "Open index File" },
     t = { "<Plug>VimwikiTabIndex", "Open index file in a new tab" },
     s = { "<Plug>VimwikiUISelect", "Select and open indexfile" },
     d = { "<Plug>VimwikiDeleteFile", "Delete wiki file you are in" },
     r = { "<Plug>VimwikiRenameFile", "Rename wiki file you are in" },
-  },
-  w = {
-    name = "+windows",
-    w = { "<C-W>p", "other-window" },
-    d = { "<C-W>c", "delete-window" },
-    ["-"] = { "<C-W>s", "split-window-below" },
-    ["|"] = { "<C-W>v", "split-window-right" },
-    ["2"] = { "<C-W>v", "layout-double-columns" },
-    h = { "<C-W>h", "window-left" },
-    j = { "<C-W>j", "window-below" },
-    l = { "<C-W>l", "window-right" },
-    k = { "<C-W>k", "window-up" },
-    H = { "<C-W>5<", "expand-window-left" },
-    J = { ":resize +5", "expand-window-below" },
-    L = { "<C-W>5>", "expand-window-right" },
-    K = { ":resize -5", "expand-window-up" },
-    ["="] = { "<C-W>=", "balance-window" },
-    s = { "<C-W>s", "split-window-below" },
-    v = { "<C-W>v", "split-window-right" },
   },
 
   X = {

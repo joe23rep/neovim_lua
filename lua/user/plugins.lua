@@ -46,20 +46,20 @@ return packer.startup(function(use)
   use("wbthomason/packer.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("akinsho/bufferline.nvim")
-  use("kyazdani42/nvim-tree.lua")
   use("windwp/nvim-autopairs")
   use("lukas-reineke/indent-blankline.nvim")
 	use("nvim-lualine/lualine.nvim")
-  -- use("tomtom/tcomment_vim")
-	use("lewis6991/impatient.nvim")
+	use("lewis6991/impatient.nvim") --faster start
 	use("lewis6991/gitsigns.nvim")
-	use("mvllow/modes.nvim")
-	use("rainbowhxch/beacon.nvim")
+	use("mvllow/modes.nvim") -- mode colors for cursorline
+	use("rainbowhxch/beacon.nvim") -- cursor animation
 	use("folke/which-key.nvim")
-	use("goolord/alpha-nvim")
+	use("goolord/alpha-nvim") -- startpage
 	use("vimwiki/vimwiki")
-	use("kevinhwang91/rnvimr")
+	use("kevinhwang91/rnvimr") -- ranger
   use("numToStr/Comment.nvim")
+  use("sagarrakshe/toggle-bool")
+	use("akinsho/toggleterm.nvim")
 
 -- cmp
 	use("hrsh7th/nvim-cmp")
@@ -72,24 +72,11 @@ return packer.startup(function(use)
 --LSP
   use("neovim/nvim-lspconfig")
   use("williamboman/nvim-lsp-installer")
-  -- use("jose-elias-alvarez/null-ls.nvim")
 
 -- snippets
 	use("L3MON4D3/LuaSnip")
 	use("rafamadriz/friendly-snippets")
 
--- toggleterm
-	use("akinsho/toggleterm.nvim")
-
--- mind
-  use {
-  'phaazon/mind.nvim',
-  branch = 'v2',
-  requires = { 'nvim-lua/plenary.nvim' },
-  configure = function()
-   require'mind'.setup()
-  end
-  }
 -- telescope
 	use {
 	'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -97,6 +84,24 @@ return packer.startup(function(use)
 	}
 	use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 	use("nvim-telescope/telescope-file-browser.nvim")
+  use("ghassan0/telescope-glyph.nvim")
+  use {
+  'sudormrfbin/cheatsheet.nvim',
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+    {'nvim-lua/popup.nvim'},
+    {'nvim-lua/plenary.nvim'},
+   }
+  }
+  use {
+  "AckslD/nvim-neoclip.lua",
+  requires = {
+    {'nvim-telescope/telescope.nvim'},
+  },
+  config = function()
+    require('neoclip').setup()
+  end,
+}
 
 -- persistence
   use({
@@ -114,12 +119,8 @@ return packer.startup(function(use)
   use("p00f/nvim-ts-rainbow")
 	use({ "joe23rep/colorscheme", as = "catppuccin"})
 	use("NvChad/nvim-colorizer.lua")
-  use {
-  "max397574/colortils.nvim",
-  cmd = "Colortils",
-  config = function()
-  end,
-  }
+  use("uga-rosa/ccc.nvim")
+
 
 -- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
@@ -128,3 +129,8 @@ return packer.startup(function(use)
 	end
 end)
 
+
+
+	-- use({ "folke/which-key.nvim", commit = "7ee35a7614e34e562fd3f815ad35bd6d7e456093" })
+  -- use("jose-elias-alvarez/null-ls.nvim")
+	-- use("levouh/tint.nvim") -- needs newer neovim version
